@@ -1,0 +1,41 @@
+@use '../../styles/variables' as v;
+
+.main__groups-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+        display: block;
+        margin: calc(v.$primary-margin-top-bottom / 2) 0 calc(v.$primary-margin-top-bottom / 4);
+    }
+
+    &-ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-item {
+        list-style: none;
+
+        &:hover:not(&_selected) {
+            cursor: pointer;
+
+            &::marker {
+                content: ">"; 
+            }
+        }
+
+        &_selected {
+            text-decoration: underline;
+            list-style: disc;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

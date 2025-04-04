@@ -1,0 +1,16 @@
+@use './styles/variables' as v;
+
+@font-face {
+    font-family: 'Jura';
+    src: url('./assets/fonts/Jura-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+body {
+    font-family: "Jura", serif;
+    font-weight: 500;
+    font-style: normal;
+
+    background-color: v.$white-color;
+}

@@ -1,0 +1,18 @@
+@use '../../styles/variables' as v;
+
+.main__node-metrics {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .main__node-metric_green {
+        color: v.$green-color;
+    }
+    .main__node-metric_yellow {
+        color: v.$yellow-color;
+    }
+    .main__node-metric_red {
+        color: v.$red-color;
+    }
+}

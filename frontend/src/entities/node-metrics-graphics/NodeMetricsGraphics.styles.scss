@@ -1,0 +1,11 @@
+@use '../../styles/variables' as v;
+
+.main__node-metrics-graphics {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+
+    min-width: 330px;
+}

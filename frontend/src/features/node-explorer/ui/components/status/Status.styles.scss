@@ -1,0 +1,34 @@
+@use '../../../../../styles/variables' as v;
+
+.main__status {
+    display: flex;
+    align-items: center;
+
+    &-circle {
+        margin: 0 calc(v.$primary-margin-left-right / 2);
+
+        width: 15px;
+        height: 15px;
+
+        border-radius: 50%;
+
+        &-unreachable {
+            background-color: v.$black-status-color;
+        }
+        &-shutdown {
+            background-color: v.$grey-status-color;
+        }
+        &-up {
+            background-color: v.$lightgreen-status-color;
+        }
+        &-warning {
+            background-color: v.$yellow-status-color;
+        }
+        &-critical {
+            background-color: v.$red-status-color;
+        }
+        &-down {
+            background-color: v.$darkred-status-color;
+        }
+    }
+}

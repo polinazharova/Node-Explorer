@@ -1,0 +1,23 @@
+@use '../../../../../styles/variables' as v;
+
+.main__nodes-switcher {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: v.$primary-padding calc(v.$primary-padding * 6);
+
+    &-prev:hover, &-next:hover  {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    &_disabled {
+        color: v.$light-grey-color;
+
+        &:hover {
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+    }
+}

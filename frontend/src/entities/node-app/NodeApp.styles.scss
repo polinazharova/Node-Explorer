@@ -1,0 +1,12 @@
+@use '../../styles/variables' as v;
+
+.main__node-app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-icon {
+        width: 25px;
+        margin-right: calc(v.$primary-margin-left-right / 2);
+    }
+}

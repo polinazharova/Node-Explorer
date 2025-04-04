@@ -1,0 +1,47 @@
+@use '../../styles/variables' as v;
+
+.main__node-admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-comp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .main__node-admin-icon {
+            margin-right: calc(v.$primary-margin-left-right / 2);
+        }
+    }
+
+    &-name-comp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .main__node-admin-fn {
+            margin-right: calc(v.$primary-margin-left-right / 2);
+        }
+    }
+
+    &-email-comp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .main__node-admin-email-icon {
+            margin-right: calc(v.$primary-margin-left-right / 2);
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: v.$grey-color;
+        }
+    }
+
+    &-email-icon, &-icon {
+        width: 25px;
+    }
+}
