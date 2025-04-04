@@ -1,9 +1,11 @@
+@use '../../../styles/variables' as v;
+
 #main__node-explorer {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 105vh;
+    height: 110vh;
 
-    border: 1px solid black;
+    border: 1px solid v.$black-color;
 }

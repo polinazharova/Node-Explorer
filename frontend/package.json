@@ -7,11 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "npm run build && node server/server.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
     "chart.js": "^4.4.8",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
@@ -22,11 +25,14 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.17.0",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "prettier": "^3.5.3",
     "sass": "^1.86.1",
     "vite": "^6.0.5"
   }
