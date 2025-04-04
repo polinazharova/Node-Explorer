@@ -1,11 +1,10 @@
 import './GroupsBlock.styles.scss'
 import Status from '../components/status/Status'
 import GroupsList from '../../../../entities/groups-nodes/GroupsList'
-import { useDispatch, useSelector } from 'react-redux';
-import { createSelector } from '@reduxjs/toolkit';
-import { fetchGroupsNodes } from '../../../../entities/groups-nodes/model/store/groupsNodesSlice';
-import { useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { useMemo } from 'react';
 import GroupsIncluder from './ui/GroupsIncluder';
+import Divider from '../components/divider/Divider';
 
 const GroupsBlock = () => {
   const { groups, nodes, status, error } = useSelector(state => state.groupsNodes);
@@ -21,28 +20,35 @@ const GroupsBlock = () => {
   ), [nodes]);
 
   const worstStatusId = useMemo(() => {
-    let tmpStatus = 0;
- 
+    const statusRating = [3, 2, 4, 5, 1, 6];
+    let idx = 0, tmpStatus = 0, tmpIdx = 0;
+
     for (let nodeId of selectedGroupNodes) {
       if (nodes[nodeId]['statusId'] > tmpStatus) {
         tmpStatus = nodes[nodeId]['statusId'];
-
-        if (tmpStatus == 6) {break;}
+        tmpIdx = statusRating.indexOf(tmpStatus);
+        if (tmpIdx > idx) {
+          idx = tmpIdx;
+          if (idx === 5) {
+            break;
+          }
+        }
       }
     }
 
-    return tmpStatus;
+    return statusRating[idx];
   }, [selectedGroupNodes])
 
-  if (error) {
+
+  if (error && status !== 'succeeded') {
     return (
-      <div className="main__groups-list">{error}</div>
+      <div className="main__groups-block">{error}</div>
     )
   }
 
-  if (status === 'loading') {
+  if (status === 'loading' || status === 'idle') {
     return (
-      <div className="main__groups-list">Загрузка...</div>
+      <div className="main__groups-block">Загрузка...</div>
     )
   }
 
@@ -50,9 +56,11 @@ const GroupsBlock = () => {
   return (
     <div className="main__groups-block">
         <Status statusId={worstStatusId}>Общий статус: </Status>
+        <Divider />
         <span className='main__groups-block-info'>Кол-во групп: {groupsLen}, кол-во нод: {nodesLen}</span>
         <span className='main__groups-block-info'>Кол-во нод в выбранной группе: {selectedGroupNodes.length}</span>
         <GroupsList />
+        <Divider />
         <GroupsIncluder groups={groups} selectedNode={selectedNode}/>
     </div>
   )

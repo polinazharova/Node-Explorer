@@ -7,5 +7,17 @@
     align-items: center;
     align-content: space-between;
 
-    min-width: 330px;
+    width: 25vw;
+
+    padding-top: v.$primary-padding;
+
+    @media screen and (max-width: 900px) {
+        & {
+            width: 170px;
+        }
+    }
+
+    #CPU-metric-graphic, #disk-metric-graphic, #memory-metric-graphic  {
+        position: static;
+    }
 }

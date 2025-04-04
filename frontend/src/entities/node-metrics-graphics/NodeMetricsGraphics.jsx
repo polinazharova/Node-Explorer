@@ -57,7 +57,8 @@ const NodeMetricsGraphics = ({nodeId}) => {
           label: `CPU utilization, % [${[firstDay]} - ${[lastDay]}]`,
           data: YCPU,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)'
+          borderColor: 'rgba(255, 99, 132, 1)',
+          pointBackgroundColor: '#fff',
         }]
       },
       {
@@ -66,7 +67,8 @@ const NodeMetricsGraphics = ({nodeId}) => {
           label: `Disk utilization, % [${[firstDay]} - ${[lastDay]}]`,
           data: YDisk,
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)'
+          borderColor: 'rgba(75, 192, 192, 1)',
+          pointBackgroundColor: '#fff',
         }]
       },
       {
@@ -75,7 +77,8 @@ const NodeMetricsGraphics = ({nodeId}) => {
           label: `Memory utilization, % [${[firstDay]} - ${[lastDay]}]`,
           data: YMemory,
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)'
+          borderColor: 'rgba(75, 192, 192, 1)',
+          pointBackgroundColor: '#fff',
         }]
       }
     ]
@@ -91,7 +94,7 @@ const NodeMetricsGraphics = ({nodeId}) => {
     const memoryContext = document.getElementById('memory-metric-graphic')?.getContext('2d');
 
     chartRefs.current.CPU = new Chart(CPUContext, {
-      type: 'line',
+      type: 'bar',
       data: graphicsData[0],
       options: {
         responsive: true,
@@ -100,7 +103,7 @@ const NodeMetricsGraphics = ({nodeId}) => {
     });
 
     chartRefs.current.disk = new Chart(diskContext, {
-        type: 'line',
+        type: 'bar',
         data: graphicsData[1],
         options: {
           responsive: true,
@@ -109,7 +112,7 @@ const NodeMetricsGraphics = ({nodeId}) => {
     });
 
     chartRefs.current.memory = new Chart(memoryContext, {
-      type: 'line',
+      type: 'bar',
       data: graphicsData[2],
       options: {
         responsive: true,

@@ -7,12 +7,19 @@ import { useDispatch } from 'react-redux'
 import { fetchGroupsNodes } from '../../../entities/groups-nodes/model/store/groupsNodesSlice'
 import { fetchMetricsNodes } from '../../../entities/node-metrics/model/metricsNodesSlice'
 
+
 const NodeExplorer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGroupsNodes('/api/groups'));
     dispatch(fetchMetricsNodes('/api/metrics'));
+
+    setInterval(() => {
+      console.log('Делаю запрос!');
+      dispatch(fetchGroupsNodes('/api/groups'));
+      dispatch(fetchMetricsNodes('/api/metrics'));
+    }, 600)
   }, [])
 
   return (

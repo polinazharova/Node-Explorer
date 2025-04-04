@@ -1,0 +1,10 @@
+@use '../../../../../styles/variables' as v;
+
+.divider {
+    min-width: 80%;
+    min-height: 0.5px;
+
+    margin: v.$primary-margin-top-bottom 0;
+
+    background-color: v.$black-color;
+}

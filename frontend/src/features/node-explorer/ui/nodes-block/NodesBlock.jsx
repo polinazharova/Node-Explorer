@@ -5,11 +5,15 @@ import Node from '../../../../entities/nodes/Node'
 
 const NodesBlock = () => {
   const nodesStatus = useSelector(state => state.groupsNodes.status);
-  const { selectedGroupNodes } = useSelector(state => state.selectedGroupNodes);
+  const nodesError = useSelector(state => state.groupsNodes.error);
   const metricsStatus = useSelector(state => state.metricsNodes.status);
+  const metricsError = useSelector(state => state.metricsNodes.status);
+  const { selectedGroupNodes } = useSelector(state => state.selectedGroupNodes);
   const { firstShownIndex } = useSelector(state => state.firstShownIndex);
 
-  if (nodesStatus === 'failed' || metricsStatus === 'failed') {
+  console.log(nodesStatus, metricsStatus);
+
+  if ((metricsError && metricsStatus !== 'succeeded') || (nodesError && nodesStatus !== 'succeeded')) {
     return (
       <div className="main__nodes-block">Что-то пошло не так...</div>
     )

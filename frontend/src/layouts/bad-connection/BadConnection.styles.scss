@@ -1,0 +1,11 @@
+@use '../../styles/variables' as v;
+
+#bad-connection {
+    min-width: 100%;
+    padding: calc(v.$primary-padding / 2);
+
+    text-align: center;
+
+    background-color: v.$red-color;
+    border: 1px solid v.$black-color;
+}

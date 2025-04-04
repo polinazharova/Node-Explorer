@@ -31,11 +31,18 @@ const metricsNodesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchMetricsNodes.pending, (state) => {
+            if (state.status === 'succeeded') {return;}
             state.status = 'loading';
         })
         builder.addCase(fetchMetricsNodes.fulfilled, (state, action) => {
           const newHash = simpleHash(action.payload);
-          if (newHash == state.hash) {return;}
+
+          if (newHash === state.hash) {
+            if (state.error) {
+              state.error = null;
+            }
+            return;
+          } 
 
           const init = {
             metrics : {},
@@ -48,12 +55,12 @@ const metricsNodesSlice = createSlice({
             return acc;
           }, init)
 
-            state.status = 'succeeded';
             state.metrics = data.metrics;
+            state.status = 'succeeded';
+            state.error = null;
             state.hash = newHash;
         })
         builder.addCase(fetchMetricsNodes.rejected, (state, action) => {
-            state.status = 'failed';
             state.error = action.payload;
         })
     }

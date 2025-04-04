@@ -22,7 +22,7 @@ export const fetchGroupsNodes = createAsyncThunk(
             headers: {
               'Content-Type': 'application/json',
             }});
-        if (!response.ok) throw new Error('Could not get data!');
+        if (!response.ok) throw new Error('Не удалось получить данные!');
         return await response.json();
       } catch (error) {
         return rejectWithValue(error.message);
@@ -36,11 +36,19 @@ const groupsNodesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchGroupsNodes.pending, (state) => {
+            if (state.status === 'succeeded') {return;}
             state.status = 'loading';
         })
         builder.addCase(fetchGroupsNodes.fulfilled, (state, action) => {
           const newHash = simpleHash(action.payload);
-          if (newHash == state.hash) {return;}
+
+          if (newHash === state.hash) {
+            if (state.error) {
+              state.error = null;
+            }
+
+            return;
+          } 
 
           const init = {
             groups: {},
@@ -80,17 +88,17 @@ const groupsNodesSlice = createSlice({
 
           }, init)
 
-            state.status = 'succeeded';
             state.groups = data.groups;
             state.nodes = data.nodes;
             state.interfaces = data.interfaces;
             state.apps = data.apps;
             state.admins = data.admins;
             state.statuses = data.statuses;
+            state.status = 'succeeded';
+            state.error = null;
             state.hash = newHash;
         })
         builder.addCase(fetchGroupsNodes.rejected, (state, action) => {
-            state.status = 'failed';
             state.error = action.payload;
         })
     }
